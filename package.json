@@ -1,0 +1,18 @@
+{
+  "name": "easygame",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack src/index.js bin/app.js --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "mithril": "^1.1.6",
+    "underscore": "^1.8.3",
+    "webpack": "^3.10.0"
+  }
+}
