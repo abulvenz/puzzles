@@ -114,6 +114,7 @@ var solve_ = (numbers) => {
 
     simplesolution = [];
     closest = [];
+    var c = 0;
     permut(numbers).forEach(arr_ => {
         twoops.forEach(twoop => {
             unopNum.forEach(unop => {
@@ -121,8 +122,9 @@ var solve_ = (numbers) => {
                 var a_bc = (f, g, fp) => (a0, a1, a2) => f[fp](a0[fp], g[fp](a1[fp], a2[fp]));
                 var ab_c = (f, g, fp) => (a0, a1, a2) => f[fp](g[fp](a0[fp], a1[fp]), a2[fp]);
                 var comps = [a_bc, ab_c];
-                var evaluate = member = comp(...twoop, member)(...arr(member))
                 comps.forEach(comp => {
+                    var evaluate = member => comp(...twoop, member)(...arr(member))
+                    c++;
                     var stringResult = evaluate('wrap');
                     var result = evaluate('fcn');
                     if (result === targetNumber) {
@@ -138,19 +140,26 @@ var solve_ = (numbers) => {
         });
     });
     closest = _.sortBy(closest, 'diff');
+    console.log('tested',c,'combinations')
+
 };
+
 
 var solve = (numbers) => {
     var twoops = getTwo(fcns);
     var unops = getFive(unaryFcns);
     simplesolution = [];
     closest = [];
+    var c = 0;
+
     permut(numbers).forEach(arr => {
         twoops.forEach(twoop => {
             var a_bc = (f, g, fp) => (a0, a1, a2) => f[fp](a0, g[fp](a1, a2));
             var ab_c = (f, g, fp) => (a0, a1, a2) => f[fp](g[fp](a0, a1), a2);
             var comps = [a_bc, ab_c];
             comps.forEach(comp => {
+                c++;
+
                 var result = comp(...twoop, 'fcn')(...arr);
                 if (result === targetNumber) {
                     simplesolution.push(comp(...twoop, 'wrap')(...arr));
@@ -164,6 +173,8 @@ var solve = (numbers) => {
         });
     });
     closest = _.sortBy(closest, 'diff');
+    console.log('tested',c,'combinations')
+
 };
 
 class DiceInput {
@@ -212,7 +223,7 @@ export default class Router {
             ]),
             simplesolution.map(solution => m('pre', solution)),
             m('hr'),
-            closest.map(solution => m('pre', JSON.stringify(solution.diff) + ': ' + JSON.stringify(solution.text)))
+            _.first(closest,30).map(solution => m('pre', JSON.stringify(solution.diff) + ': ' + JSON.stringify(solution.text)))
         ];
     }
 }

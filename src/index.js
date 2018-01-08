@@ -11,11 +11,15 @@ var links = [
         link: '/queens',
         text: 'Queens',
         component: d6.default
-    }, {
+    }, /*{
+        link: '/15',
+        text: '15',
+        component: d1.default
+    },*/ {
         link: '/15',
         text: '15',
         component: d2.default
-    }, {
+    },{
         link: '/set',
         text: 'Set',
         component: d3.default
