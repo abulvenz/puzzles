@@ -5,6 +5,7 @@ import * as d3 from './index.3';
 import * as d4 from './index.4';
 import * as d5 from './index.5';
 import * as d6 from './index.6';
+import * as d7 from './index.7';
 
 var links = [
     {
@@ -27,6 +28,10 @@ var links = [
         link: '/todo',
         text: 'Todo',
         component: d5.default
+    }, {
+        link: '/blackbox',
+        text: 'Blackbox',
+        component: d7.default
     }
 ];
 
