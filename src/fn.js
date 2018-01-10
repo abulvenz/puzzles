@@ -28,6 +28,7 @@ var interval = (startInclusive, endInclusive) => {
 };
 
 var zipWith = (fn, ...arrs) => {
+    arguments.l
     return range(0, Math.min(...arrs.map(arr => arr.length))).
         map(i => fn(...(arrs.map(arr => arr[i]))));
 };
@@ -38,6 +39,10 @@ var tail = arr => {
 
 var head = arr => {
     return arr[0];
+}
+
+var isEmpty = arr => {
+    return arr.length === 0;
 }
 
 var withoutLast = (arr = []) => {
@@ -67,6 +72,7 @@ var foldRight = (arr, start, fn) => {
 }
 
 var and = (acc, curr) => acc && curr;
+var not = fn => !fn;
 
 var id = n => n;
 var succ = n => n + 1;
@@ -91,4 +97,6 @@ export default {
     succ,
     pred,
     zipWith,
+    not,
+    isEmpty
 };

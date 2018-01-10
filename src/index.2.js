@@ -60,7 +60,7 @@ var binaryFunctions = [
         active: false
     }, {
         name: 'mean',
-        fcn: (x, y) => (x + y) / 2,
+        fcn: (x, y) => (x + y) / 2.,
         wrap: (x, y) => 'mean(' + x + ' , ' + y + ')',
         inv: (x, y) => Math.pow(x, y),
         active: false
