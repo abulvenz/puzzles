@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack src/index.js bin/app.js --watch",
+    "start": "webpack src/index.js docs/app.js --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
