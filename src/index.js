@@ -1,42 +1,43 @@
 import m from 'mithril';
-import * as d1 from './index.1';
-import * as d2 from './index.2';
-import * as d3 from './index.3';
-import * as d4 from './index.4';
-import * as d5 from './index.5';
-import * as d6 from './index.6';
-import * as d7 from './index.8';
-import * as d8 from './dragdrop';
+import * as get15_1 from './get15_1';
+import * as get15_2 from './get15_2';
+import * as set from './set';
+import * as max_non_sets from './max_non_sets';
+import * as todo from './todo';
+import * as queens from './queens';
+import * as blackbox from './blackbox';
+import * as dragdrop from './dragdrop';
+    
 
 var links = [
     {
         link: '/queens',
         text: 'Queens',
-        component: d6.default
+        component: queens.default
     }, /*{
         link: '/15',
         text: '15',
-        component: d1.default
+        component: get15_1.default
     },*/ {
         link: '/15',
         text: '15',
-        component: d2.default
+        component: get15_2.default
     },{
         link: '/set',
         text: 'Set',
-        component: d3.default
+        component: set.default
     }, {
         link: '/todo',
         text: 'Todo',
-        component: d5.default
+        component: todo.default
     }, {
         link: '/blackbox',
         text: 'Blackbox',
-        component: d7.default
+        component: blackbox.default
     }, {
         link: '/dragndrop',
         text: 'DragNDrop',
-        component: d8.default
+        component: dragdrop.default
     }
 ];
 

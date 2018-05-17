@@ -261,6 +261,8 @@ class BiFuncView {
     }
 }
 
+console.log('underscore first', _.first([],39));
+
 export default class Router {
     view(vnode) {
         return m('.container', [
@@ -283,8 +285,8 @@ export default class Router {
             ]),
             m('br'),
             simplesolution.map(solution => m('pre', solution)),
-            m('hr'),
-            _.first(closest, 30).map(solution => m('pre', JSON.stringify(solution.diff) + ': ' + JSON.stringify(solution.text)))
+            m('hr'),	    
+            _.first(closest, 30)?_.first(closest, 30).map(solution => m('pre', JSON.stringify(solution.diff) + ': ' + JSON.stringify(solution.text))):null
         ]);
     }
 }
