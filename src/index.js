@@ -6,6 +6,7 @@ import * as d4 from './index.4';
 import * as d5 from './index.5';
 import * as d6 from './index.6';
 import * as d7 from './index.8';
+import * as d8 from './dragdrop';
 
 var links = [
     {
@@ -32,6 +33,10 @@ var links = [
         link: '/blackbox',
         text: 'Blackbox',
         component: d7.default
+    }, {
+        link: '/dragndrop',
+        text: 'DragNDrop',
+        component: d8.default
     }
 ];
 
