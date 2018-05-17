@@ -15,4 +15,4 @@ There is no server included. You have for instance the following options:
 - Copy index.html and bin/app.js to whatever server served directory
 - Just open index.html in any browser.
 
-
+# Nothing is more stunning than the live-demo [https://abulvenz.github.io/puzzles/]
