@@ -37,7 +37,7 @@ export default class Editor {
     view(vnode) {
         return m('.container', 
 			m('h1', 'Drag\'n\'Drop '),
-            m('.form-group', m('input', { type: 'range', min: 4, max: 8, onchange: (ev) => setSize(ev.target.valueAsNumber) })),
+//            m('.form-group', m('input', { type: 'range', min: 4, max: 8, onchange: (ev) => setSize(ev.target.valueAsNumber) })),
             m('.leftbox',
 				fn.interval(1,10).map(val=>m('.badge',draggableMixin(val+''),val))
 			),

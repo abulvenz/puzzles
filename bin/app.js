@@ -3608,7 +3608,7 @@ class Editor {
     view(vnode) {
         return __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.container', 
 			__WEBPACK_IMPORTED_MODULE_0_mithril___default()('h1', 'Drag\'n\'Drop '),
-            __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.form-group', __WEBPACK_IMPORTED_MODULE_0_mithril___default()('input', { type: 'range', min: 4, max: 8, onchange: (ev) => setSize(ev.target.valueAsNumber) })),
+//            m('.form-group', m('input', { type: 'range', min: 4, max: 8, onchange: (ev) => setSize(ev.target.valueAsNumber) })),
             __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.leftbox',
 				__WEBPACK_IMPORTED_MODULE_1__fn__["a" /* default */].interval(1,10).map(val=>__WEBPACK_IMPORTED_MODULE_0_mithril___default()('.badge',draggableMixin(val+''),val))
 			),
