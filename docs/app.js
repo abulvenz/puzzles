@@ -3024,14 +3024,14 @@ var directions = [id, succ, pred];
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_mithril__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_mithril___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_mithril__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__get15_1__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__get15_2__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__set__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__max_non_sets__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__todo__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__queens__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__blackbox__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dragdrop__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__get15_1__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__get15_2__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__set__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__max_non_sets__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__todo__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__queens__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__blackbox__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dragdrop__ = __webpack_require__(15);
 
 
 
@@ -3554,79 +3554,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_mithril__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_mithril___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_mithril__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fn__ = __webpack_require__(3);
-
-
-
-
-
-let compis = [];
-
-let draggableMixin = (data, options={}) => {
-	return Object.assign({
-		draggable:true,				
-			ondragstart:e=>{
-				console.log(e); 
-				e.dataTransfer.setData('text', data)
-				e.target.style.opacity = "0.6"
-			},
-			ondragend:e=>{
-				console.log(e); 
-				e.target.style.opacity = "1.0"
-			}
-	}, options);
-};
-
-let dropzoneMixin = (options) => {
-	let res = Object.assign({
-		ondragover:e=>{e.preventDefault();console.log('dragover',e);},
-		ondragenter:e=>{ e.preventDefault(); console.log('dragenter',e)},
-		ondrop:e=>{
-			e.preventDefault(); 
-			console.log('drop',e);			
-			res.dropped(e.dataTransfer.getData('text'));
-		}		
-	}, options);
-	return res;
-};
-
-class Editor {
-    view(vnode) {
-        return __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.container', 
-			__WEBPACK_IMPORTED_MODULE_0_mithril___default()('h1', 'Drag\'n\'Drop '),
-            __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.form-group', __WEBPACK_IMPORTED_MODULE_0_mithril___default()('input', { type: 'range', min: 4, max: 8, onchange: (ev) => setSize(ev.target.valueAsNumber) })),
-            __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.leftbox',
-				__WEBPACK_IMPORTED_MODULE_1__fn__["a" /* default */].interval(1,10).map(val=>__WEBPACK_IMPORTED_MODULE_0_mithril___default()('.badge',draggableMixin(val+''),val))
-			),
-			__WEBPACK_IMPORTED_MODULE_0_mithril___default()('.rightbox',dropzoneMixin({
-				style:'width:250px;height:250px; border:1px solid red',
-				dropped:d=>compis.push(d)
-			}), compis.map(c=>__WEBPACK_IMPORTED_MODULE_0_mithril___default()('.badge',c))
-		
-            )
-            )
-    }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = Editor;
-
-
-
-/***/ }),
-/* 17 */
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3867,7 +3795,7 @@ class Router {
 
 
 /***/ }),
-/* 18 */
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4172,7 +4100,7 @@ class Router {
 
 
 /***/ }),
-/* 19 */
+/* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4367,7 +4295,7 @@ class Router {
 
 
 /***/ }),
-/* 20 */
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4575,7 +4503,7 @@ class SetFragment {
 
 
 /***/ }),
-/* 21 */
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4705,7 +4633,7 @@ class TodoApp {
 
 
 /***/ }),
-/* 22 */
+/* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4887,7 +4815,7 @@ class Comp {
 
 
 /***/ }),
-/* 23 */
+/* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5102,6 +5030,70 @@ class Comp {
     }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Comp;
+
+
+/***/ }),
+/* 15 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_mithril__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_mithril___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_mithril__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fn__ = __webpack_require__(3);
+
+
+
+
+
+let compis = [];
+
+let draggableMixin = (data, options={}) => {
+	return Object.assign({
+		draggable:true,				
+			ondragstart:e=>{
+				console.log(e); 
+				e.dataTransfer.setData('text', data)
+				e.target.style.opacity = "0.6"
+			},
+			ondragend:e=>{
+				console.log(e); 
+				e.target.style.opacity = "1.0"
+			}
+	}, options);
+};
+
+let dropzoneMixin = (options) => {
+	let res = Object.assign({
+		ondragover:e=>{e.preventDefault();console.log('dragover',e);},
+		ondragenter:e=>{ e.preventDefault(); console.log('dragenter',e)},
+		ondrop:e=>{
+			e.preventDefault(); 
+			console.log('drop',e);			
+			res.dropped(e.dataTransfer.getData('text'));
+		}		
+	}, options);
+	return res;
+};
+
+class Editor {
+    view(vnode) {
+        return __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.container', 
+			__WEBPACK_IMPORTED_MODULE_0_mithril___default()('h1', 'Drag\'n\'Drop '),
+//            m('.form-group', m('input', { type: 'range', min: 4, max: 8, onchange: (ev) => setSize(ev.target.valueAsNumber) })),
+            __WEBPACK_IMPORTED_MODULE_0_mithril___default()('.leftbox',
+				__WEBPACK_IMPORTED_MODULE_1__fn__["a" /* default */].interval(1,10).map(val=>__WEBPACK_IMPORTED_MODULE_0_mithril___default()('.badge',draggableMixin(val+''),val))
+			),
+			__WEBPACK_IMPORTED_MODULE_0_mithril___default()('.rightbox',dropzoneMixin({
+				style:'width:250px;height:250px; border:1px solid red',
+				dropped:d=>compis.push(d)
+			}), compis.map(c=>__WEBPACK_IMPORTED_MODULE_0_mithril___default()('.badge',c))
+		
+            )
+            )
+    }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = Editor;
+
 
 
 /***/ })
