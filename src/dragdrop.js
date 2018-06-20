@@ -2,6 +2,7 @@ import m from 'mithril';
 
 import fn from './fn'
 
+import './assign'
 
 let compis = [];
 
