@@ -7,22 +7,23 @@ import * as todo from './todo';
 import * as queens from './queens';
 import * as blackbox from './blackbox';
 import * as dragdrop from './dragdrop';
-    
+import * as computesquare from './computesquare';
 
-var links = [
-    {
+var links = [{
         link: '/queens',
         text: 'Queens',
         component: queens.default
-    }, /*{
-        link: '/15',
-        text: '15',
-        component: get15_1.default
-    },*/ {
+    },
+    /*{
+           link: '/15',
+           text: '15',
+           component: get15_1.default
+       },*/
+    {
         link: '/15',
         text: '15',
         component: get15_2.default
-    },{
+    }, {
         link: '/set',
         text: 'Set',
         component: set.default
@@ -38,13 +39,20 @@ var links = [
         link: '/dragndrop',
         text: 'DragNDrop',
         component: dragdrop.default
+    }, {
+        link: '/computesquare',
+        text: 'ComputeSquare',
+        component: computesquare.default
     }
 ];
 
 class Router {
     oncreate(vnode) {
         m.route(vnode.dom, '/queens',
-            links.reduce((acc, { link, component }) => {
+            links.reduce((acc, {
+                link,
+                component
+            }) => {
                 acc[link] = component;
                 return acc;
             }, {})
@@ -74,4 +82,6 @@ class Navbar {
     }
 }
 
-m.mount(document.body, { view: vnode => [m(Navbar), m(Router)] });
+m.mount(document.body, {
+    view: vnode => [m(Navbar), m(Router)]
+});

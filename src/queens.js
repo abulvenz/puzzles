@@ -31,7 +31,7 @@ var interval = (startInclusive, endInclusive) => {
 
 var zipWith = (fn, ...arrs) => {
     return range(0, Math.min(...arrs.map(arr => arr.length))).
-        map(i => fn(...(arrs.map(arr => arr[i]))));
+    map(i => fn(...(arrs.map(arr => arr[i]))));
 };
 
 var tail = arr => {
@@ -80,11 +80,48 @@ var testOk = () => {
 
     console.log('[0,0]?', flatten([0, 0]))
     console.log('[0,0]?', flatten([0, [0]]))
-    console.log('[0,0]?', flatten([[0], 0]))
-    console.log('[0,0,0,0]?', flatten([0, [0, [0], [0]]]))
-    console.log('[0,0,[0],[0]]?', flatten([0, [0, [0], [0]]], 1))
-    console.log('[0,0,{help: "help"}]?', flatten([[0, 0], { help: "help" }]))
+    console.log('[0,0]?', flatten([
+        [0], 0
+    ]))
+    console.log('[0,0,0,0]?', flatten([0, [0, [0],
+        [0]
+    ]]))
+    console.log('[0,0,[0],[0]]?', flatten([0, [0, [0],
+        [0]
+    ]], 1))
+    console.log('[0,0,{help: "help"}]?', flatten([
+        [0, 0], {
+            help: "help"
+        }
+    ]))
 }
+
+var transpose = solution => {
+    let transposed = [];
+    solution.forEach((v, i) => {
+        transposed[v] = i;
+    });
+    return transposed;
+};
+
+var flip = solution => {
+    let flipped = [];
+    solution.forEach((v, i) => flipped[i] = size_ - 1 - v);
+    return flipped;
+};
+
+var flipY = solution => {
+    let flipped = [];
+    solution.forEach((v, i) => flipped[size_ - 1 - i] = v);
+    return flipped;
+};
+
+var comp = (a, b) => {
+    return a.every((v, i) => b[i] === v);
+};
+
+
+
 
 var foldLeft = (arr, start, fn) => {
     return arr.reduce(fn, start);
@@ -101,12 +138,13 @@ var pred = n => n - 1;
 
 var directions = [id, succ, pred];
 
+// 
 var okToAdd = (pos, walk, partialSolution) => {
     return partialSolution.length === 0 ?
         true :
         (tail(partialSolution) === walk(pos)) ?
-            false :
-            okToAdd(walk(pos), walk, withoutLast(partialSolution));
+        false :
+        okToAdd(walk(pos), walk, withoutLast(partialSolution));
 };
 
 var fieldOk = (pos, partialSolution = []) => {
@@ -119,16 +157,17 @@ var fieldOk = (pos, partialSolution = []) => {
 // extended solutions of the partial one.
 var extendSolution = (partialSolution = [], size = 8) => {
     return range(0, size).
-        filter(newField => fieldOk(newField, partialSolution)).
-        map(newField => partialSolution.concat(newField));
+    filter(newField => fieldOk(newField, partialSolution)).
+    map(newField => partialSolution.concat(newField));
 };
 
 // 
-var allSolutions = (size = 8, solutions = [[]]) => {
+var allSolutions = (size = 8, solutions = [
+    []
+]) => {
     return (solutions.length > 0 && solutions[0].length === size) ?
         solutions :
-        allSolutions(size, flatten(solutions.
-            map(solution => extendSolution(solution, size)), 1));
+        allSolutions(size, flatten(solutions.map(solution => extendSolution(solution, size)), 1));
 };
 
 var size_ = 8;
@@ -141,32 +180,81 @@ var setSize = (size) => {
 
 var solutions = allSolutions(size_);
 
+
+let solutions_ = [];
+
+let pipe = (fns, obj) => {
+    let r = obj;
+    fns.map(f => {
+        r = f(r);
+    })
+    return r;
+};
+
+
+const sym = [
+    [id],
+    [transpose],
+    [flip],
+    [transpose, flip],
+    [flipY],
+    [transpose, flipY],
+    [flip, flipY],
+    [transpose, flip, flipY]
+];
+let symmetrics = (solution) => sym
+    .map(s => pipe(s, solution));
+
+solutions.forEach(solution => {
+
+        let differentFromAllExisting = solutions_.map(exsol => symmetrics(exsol)
+            .every(symsol => !comp(symsol, solution))).every(b => b === true);
+
+        if (differentFromAllExisting)
+            solutions_.push(solution);
+
+        console.log(differentFromAllExisting, 'different');
+        //	
+    }
+
+);
+
+
+console.log('length', solutions_.length);
+
 class SolutionView {
     view(vnode) {
         console.log('vnode.dom', this.dom)
-        return m('table', range(0, size_).
-            map(row => m('tr', range(0, size_).
-                map(column => m('td', {
-                    style: 'border-style:solid; border-width:1px;border-color:lightgray;height:' + vnode.attrs.size + 'px;width:' + vnode.attrs.size + 'px;' + [
-                        `background-color:red;
+        return m('table', range(0, size_).map(row => m('tr', range(0, size_).map(column => m('td', {
+            style: 'border-style:solid; border-width:1px;border-color:lightgray;height:' + vnode.attrs.size + 'px;width:' + vnode.attrs.size + 'px;' + [
+                `background-color:red;
                     -webkit-border-radius: ${vnode.attrs.size / 2}px;
                     -moz-border-radius: ${vnode.attrs.size / 2}px;
                     border-radius: ${vnode.attrs.size / 2}px;`,
-                        'background-color:white',
-                        'background-color:black'
-                    ][
-                        vnode.attrs.solution[row] === column ? 0 : ((row + column) % 2) ? 1 : 2
-                    ]
-                }, ' ')))));
+                'background-color:white',
+                'background-color:black'
+            ][
+                vnode.attrs.solution[row] === column ? 0 : ((row + column) % 2) ? 1 : 2
+            ]
+        }, ' ')))));
     }
 }
 
 export default class Comp {
     view(vnode) {
         return m('.container', m('h1', 'Queens ' + size_ + 'x' + size_ + ' has ' + solutions.length + ' solutions'),
-            m('.form-group', m('input', { type: 'range', min: 4, max: 8, onchange: (ev) => setSize(ev.target.valueAsNumber) }))
-            , m('.row', [
-                solutions.map(solution => m('.col-md-4.col-xs-12', { style: 'margin-bottom:40px' }, m(SolutionView, { solution, size: 30 })))
+            m('.form-group', m('input', {
+                type: 'range',
+                min: 4,
+                max: 8,
+                onchange: (ev) => setSize(ev.target.valueAsNumber)
+            })), m('.row', [
+                solutions.map(solution => m('.col-md-4.col-xs-12', {
+                    style: 'margin-bottom:40px'
+                }, m(SolutionView, {
+                    solution,
+                    size: 30
+                })))
             ]))
     }
 }
