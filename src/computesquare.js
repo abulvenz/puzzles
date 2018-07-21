@@ -1,11 +1,23 @@
 import m from 'mithril';
-
+import _ from 'underscore';
 
 let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 let results = [66, 13, 60, 3, 72, 30];
 
 let times_ = (a, b) => a * b;
 let minus_ = (a, b) => a - b;
+let add___ = (a, b) => a + b;
+
+let id = a => a;
+let union = (...a) => [...a];
+
+var range = (startInclusive, endExclusive) => {
+    let result = [];
+    for (let i = startInclusive; i < endExclusive; i++) {
+        result.push(i);
+    }
+    return result;
+};
 
 let fs = [
     [times_, minus_],
@@ -21,7 +33,38 @@ let equals = '=';
 let times = 'x';
 let minus = '-';
 
-let createEquation = (f1, f2, n1, n2, n3, r) => f2(f1(n1, n2), n3) - r;
+let createEquation = (f, r) => n => f[1](f[0](n[0], n[1]), n[2]) - r;
+
+const split = (arr, n) => {
+    let result = [];
+    do {
+        result.push(_.first(arr, n));
+    } while ((arr = _.rest(arr, n)).length >= n);
+    return result;
+};
+
+var zipWith = (fn, ...arrs) => {
+    return range(0, Math.min(...arrs.map(arr => arr.length))).
+    map(i => fn(...(arrs.map(arr => arr[i]))));
+};
+
+const transpose = (...arrOArrs) => zipWith(union, ...arrOArrs);
+
+console.log(transpose([0, 1], [2, 3]))
+
+console.log('tr', transpose(...split(numbers, 3)));
+console.log('id', split(numbers, 3));
+
+let equations_ = numbers => [union, transpose].map(tr => tr(numbers));
+
+
+let equa = numbers => fs
+    .map((f, idx) => createEquation(f, numbers, results[idx]))
+
+
+let splitter = numbers => [...split(numbers, 3), ...transpose(...split(numbers, 3))]
+
+console.log(equa(numbers));
 
 let equations = [
     numbers => fs[0][1](fs[0][0](numbers[0], numbers[1]), numbers[2]) - results[0],
@@ -31,6 +74,9 @@ let equations = [
     numbers => fs[4][1](fs[4][0](numbers[1], numbers[4]), numbers[7]) - results[4],
     numbers => fs[5][1](fs[5][0](numbers[2], numbers[5]), numbers[8]) - results[5]
 ];
+
+const test_ = numbers =>
+    equations.every(equation => equation(numbers) === 0);
 
 const test = numbers =>
     equations.every(equation => equation(numbers) === 0);
