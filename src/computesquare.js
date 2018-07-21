@@ -4,8 +4,8 @@ import _ from 'underscore';
 let n = {
     numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9]
 };
-let results__ = [66, 13, 60, 3, 72, 30];
-let results = [6, 15, 24, 12, 15, 18];
+let results = [66, 13, 60, 3, 72, 30];
+let results__ = [6, 15, 24, 12, 15, 18];
 
 let times_ = (a, b) => a * b;
 let minus_ = (a, b) => a - b;
@@ -28,7 +28,7 @@ var range = (startInclusive, endExclusive) => {
     return result;
 };
 
-let fs____ = [
+let fs = [
     [times_, minus_],
     [times_, minus_],
     [times_, times_],
@@ -36,7 +36,7 @@ let fs____ = [
     [times_, times_],
     [times_, times_]
 ];
-let fs = [
+let fs___ = [
     [add___, add___],
     [add___, add___],
     [add___, add___],
@@ -269,7 +269,7 @@ let fields = [
     }), empty, m('button', {
         onclick: () => {
             console.log(setNumbers(
-                _.flatten(permute([1, 2, 3, 4, 5, 6, 7, 8, 9]).filter(test_)[0])
+                _.flatten(permute([1, 2, 3, 4, 5, 6, 7, 8, 9]).find(test_))
                 //     [1,2,3,4,5,6,7,8,9]
             ));
             m.redraw()
