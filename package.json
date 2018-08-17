@@ -12,6 +12,7 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "bootstrap": "^3.3.7",
+    "fast-json-patch": "^2.0.6",
     "mithril": "^1.1.6",
     "underscore": "^1.8.3",
     "webpack": "^3.10.0"
