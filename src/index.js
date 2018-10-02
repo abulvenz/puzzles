@@ -9,6 +9,7 @@ import * as blackbox from './blackbox';
 import * as dragdrop from './dragdrop';
 import * as computesquare from './computesquare';
 import * as ships from './ships';
+import * as waves from './waves';
 
 var links = [{
         link: '/queens',
@@ -44,7 +45,8 @@ var links = [{
         link: '/computesquare',
         text: 'ComputeSquare',
         component: computesquare.default
-    }, {link:'/ships',text:'Ships',component:ships.default }
+    }, {link:'/ships',text:'Ships',component:ships.default },
+    {link:'/waves',text:'Waves',component:waves.default }
 ];
 
 class Router {
