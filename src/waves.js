@@ -33,8 +33,8 @@ const {
 } = tagl_hyperscript;
 
 
-let xres = 40;
-let yres = 40;
+let xres = 60;
+let yres = Math.round(xres / innerWidth * innerHeight);
 
 let time = 0;
 
@@ -65,8 +65,8 @@ const color = (x, y) => {
     let d1 = Math.sqrt(Math.pow(x - evilGuy.x, 2) + Math.pow(y - evilGuy.y, 2))
     let d2 = Math.sqrt(Math.pow(x - player.x, 2) + Math.pow(y - player.y, 2))
 
-    let f1 = 0.25 * (Math.sin(-d1-time*10)) + 0.5;
-    let f2 = -0.25 * (Math.sin(-d2-time*10)) + 0.5;
+    let f1 = 0.25 * (Math.sin(-d1-time*100)) + 0.5;
+    let f2 = -0.25 * (Math.sin(-d2-time*100)) + 0.5;
     //   let f1 = 0.5*(Math.sin(evilGuy.x+x)+Math.sin(time) + Math.cos(evilGuy.y+y)+Math.cos(time));
     //   let f2 = -0.5*(Math.sin(player.x+x)+Math.sin(time) + Math.cos(player.y+y)+Math.cos(time));
 
