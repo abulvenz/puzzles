@@ -36,10 +36,13 @@ const {
 let xres = 60;
 let yres = Math.round(xres / innerWidth * innerHeight);
 
+yres += yres % 2;
+
 let time = 0;
 
 setInterval(() => {
     time += 0.05;
+    console.log(velocity)
     m.redraw();
 }, 50);
 
@@ -53,6 +56,8 @@ let player = {
     y: 0
 };
 
+let velocity = 85;
+
 const color = (x, y) => {
     if (x === player.x && y === player.y)
         return `rgba(255,255,255,1)`;
@@ -65,8 +70,8 @@ const color = (x, y) => {
     let d1 = Math.sqrt(Math.pow(x - evilGuy.x, 2) + Math.pow(y - evilGuy.y, 2))
     let d2 = Math.sqrt(Math.pow(x - player.x, 2) + Math.pow(y - player.y, 2))
 
-    let f1 = 0.25 * (Math.sin(-d1-time*100)) + 0.5;
-    let f2 = -0.25 * (Math.sin(-d2-time*100)) + 0.5;
+    let f1 = 0.25 * (Math.sin(-d1 - time * velocity)) + 0.5;
+    let f2 = -0.25 * (Math.sin(-d2 - time * velocity)) + 0.5;
     //   let f1 = 0.5*(Math.sin(evilGuy.x+x)+Math.sin(time) + Math.cos(evilGuy.y+y)+Math.cos(time));
     //   let f2 = -0.5*(Math.sin(player.x+x)+Math.sin(time) + Math.cos(player.y+y)+Math.cos(time));
 
@@ -75,7 +80,7 @@ const color = (x, y) => {
 
 export default {
     view(vnode) {
-        return svg.debug({
+        return [svg.debug({
                 width: innerWidth,
                 height: innerHeight,
                 style: 'background-color:black',
@@ -94,6 +99,12 @@ export default {
                     fill: color(x, y)
                 }))
             )
-        );
+        ), input({
+            type: 'range',
+            min:0,
+            max:200,
+            oninput:  m.withAttr('value', v => velocity = v),
+            onchange:  m.withAttr('value', v => velocity = v)
+        })];
     }
 };
