@@ -42,7 +42,7 @@ let time = 0;
 
 setInterval(() => {
     time += 0.05;
-    console.log(velocity)
+   // console.log(velocity)
     m.redraw();
 }, 50);
 
