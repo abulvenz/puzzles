@@ -93,7 +93,7 @@ export default {
             value: botschaft,
             oninput: m.withAttr("value", v => (botschaft = v))
           })
-        ),
+        ),        
         br(),
         div.formGroup(
           button.btn.btnPrimary(

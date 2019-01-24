@@ -5,8 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Puzzles by abulvenz@github</title>
-    
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
     <style>
         .bb {
             border-style: solid;
@@ -138,6 +138,7 @@
     SHIP_EAST_END: 6 
     */
 
+
         .ship-2 {
             border-radius: 30px 30px 30px 30px;
         }
@@ -146,20 +147,29 @@
             border-radius: 0px 0px 0px 0px;
         }
 
+        /* top left, top right, bottom right, bottom left */
+        /* NORTH */
         .ship-4 {
-            border-radius: 0px 30px 30px 0px;
+            /*
+             *  1   2
+             *  4   3              
+             */
+            border-radius: 30px 30px 0px 0px;
         }
 
+        /* WEST */
         .ship-5 {
-            border-radius: 0px 0px 30px 30px;
-        }
-
-        .ship-6 {
             border-radius: 30px 0px 0px 30px;
         }
 
+        /* SOUTH */
+        .ship-6 {
+            border-radius: 0px 0px 30px 30px;
+        }
+
+        /* EAST */
         .ship-7 {
-            border-radius: 30px 30px 0px 0px;
+            border-radius: 0px 30px 30px 0px;
         }
     </style>	
 
